@@ -1,30 +1,10 @@
-import nicehash
-import os
-from dotenv import load_dotenv
+from nicehash_config import get_private_api, get_algorithms
 
-# Load environment variables from .env file if it exists
-if os.path.exists('.env'):
-    load_dotenv()
-
-# Production - https://www.nicehash.com
-host = 'https://api2.nicehash.com'
-
-# Pull out of environment variables
-organisation_id = os.getenv('ORG_ID')
-key = os.getenv('API_KEY')
-secret = os.getenv('API_SECRET')
-
-# Create public api object
-public_api = nicehash.public_api(host, True)
-
-# # Get all algorithms
-algorithms = public_api.get_algorithms()
+# Get API clients and algorithms
+algorithms = get_algorithms()
+private_api = get_private_api()
 
 print("Getting orders... ")
-print(organisation_id)
-
-# Create private api object
-private_api = nicehash.private_api(host, organisation_id, key, secret, True)
 
 orders = private_api.get_hashpower_orderbook("EQUIHASH")
 eu_stats = orders['stats']["EU"]
