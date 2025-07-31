@@ -1,5 +1,10 @@
 import nicehash
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file if it exists
+if os.path.exists('.env'):
+    load_dotenv()
 
 # Production - https://www.nicehash.com
 host = 'https://api2.nicehash.com'
@@ -15,7 +20,8 @@ public_api = nicehash.public_api(host, True)
 # # Get all algorithms
 algorithms = public_api.get_algorithms()
 
-print("Updating order...")
+print("Getting orders... ")
+print(organisation_id)
 
 # Create private api object
 private_api = nicehash.private_api(host, organisation_id, key, secret, True)

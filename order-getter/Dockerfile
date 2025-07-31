@@ -9,6 +9,7 @@ RUN apt-get install -y python3-venv \
 
 RUN pip install mysql-connector-python
 RUN pip install python-decouple
+RUN pip install python-dotenv
 
 RUN mkdir /app
 WORKDIR /app
